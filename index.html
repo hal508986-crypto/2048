@@ -144,8 +144,15 @@
             font-size: 32px;
             font-weight: 800;
             transition: transform 100ms ease-in-out, background-color 100ms ease-in-out;
-            animation: appear 200ms ease-out;
             z-index: 10;
+        }
+
+        .tile-new {
+            animation: appear 200ms ease-out;
+        }
+
+        .tile-merged {
+            animation: pop 200ms ease-in-out;
         }
 
         @keyframes appear {
@@ -159,6 +166,7 @@
                 opacity: 1;
             }
         }
+
 
         @keyframes pop {
             0% {
@@ -174,9 +182,6 @@
             }
         }
 
-        .tile.merged {
-            animation: pop 200ms ease-in-out;
-        }
 
         .tile-2 {
             background-color: var(--tile-2);
@@ -445,19 +450,27 @@
                         const tile = this.grid[r][c];
                         if (tile) {
                             let tileEl = currentTiles.get(String(tile.id));
+                            const className = `tile tile-${tile.value}`;
+
                             if (!tileEl) {
                                 tileEl = document.createElement('div');
-                                tileEl.className = `tile tile-${tile.value}`;
+                                tileEl.className = className + ' tile-new';
                                 tileEl.textContent = tile.value;
                                 tileEl.dataset.id = tile.id;
                                 this.container.appendChild(tileEl);
                             } else {
-                                tileEl.className = `tile tile-${tile.value}`;
-                                tileEl.textContent = tile.value;
+                                // Only update if changed to avoid re-triggering transitions/animations
+                                if (tileEl.textContent !== String(tile.value)) {
+                                    tileEl.textContent = tile.value;
+                                }
+                                if (!tileEl.classList.contains(`tile-${tile.value}`)) {
+                                    tileEl.className = className;
+                                }
                             }
 
                             if (tile.mergedFrom) {
-                                tileEl.classList.add('merged');
+                                tileEl.classList.add('tile-merged');
+                                delete tile.mergedFrom; // Only animate once
                             }
 
                             const x = c * (cellSize + gap);
@@ -475,11 +488,14 @@
                     }
                 });
 
-                // Clear merged states after animation
+                // Clear temporary animation classes after they finish
                 setTimeout(() => {
-                    document.querySelectorAll('.tile.merged').forEach(el => el.classList.remove('merged'));
-                }, 200);
+                    document.querySelectorAll('.tile-new, .tile-merged').forEach(el => {
+                        el.classList.remove('tile-new', 'tile-merged');
+                    });
+                }, 250);
             }
+
 
             move(direction) {
                 // 0: up, 1: right, 2: down, 3: left
