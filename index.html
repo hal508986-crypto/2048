@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,7 +15,7 @@
             --text-color: #f8fafc;
             --accent-color: #38bdf8;
             --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            
+
             --tile-2: #e2e8f0;
             --tile-4: #cbd5e1;
             --tile-8: #fcd34d;
@@ -66,7 +67,9 @@
             font-weight: 800;
             background: linear-gradient(135deg, #38bdf8, #818cf8);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+
         }
 
         .scores-container {
@@ -146,31 +149,99 @@
         }
 
         @keyframes appear {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         @keyframes pop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         .tile.merged {
             animation: pop 200ms ease-in-out;
         }
 
-        .tile-2 { background-color: var(--tile-2); color: var(--tile-txt-dark); }
-        .tile-4 { background-color: var(--tile-4); color: var(--tile-txt-dark); }
-        .tile-8 { background-color: var(--tile-8); color: var(--tile-txt-dark); }
-        .tile-16 { background-color: var(--tile-16); color: var(--tile-txt-light); }
-        .tile-32 { background-color: var(--tile-32); color: var(--tile-txt-light); }
-        .tile-64 { background-color: var(--tile-64); color: var(--tile-txt-light); }
-        .tile-128 { background-color: var(--tile-128); color: var(--tile-txt-light); font-size: 28px; box-shadow: 0 0 10px var(--tile-128); }
-        .tile-256 { background-color: var(--tile-256); color: var(--tile-txt-light); font-size: 28px; box-shadow: 0 0 15px var(--tile-256); }
-        .tile-512 { background-color: var(--tile-512); color: var(--tile-txt-light); font-size: 28px; box-shadow: 0 0 20px var(--tile-512); }
-        .tile-1024 { background-color: var(--tile-1024); color: var(--tile-txt-light); font-size: 22px; box-shadow: 0 0 25px var(--tile-1024); }
-        .tile-2048 { background-color: var(--tile-2048); color: var(--tile-txt-light); font-size: 22px; box-shadow: 0 0 30px var(--tile-2048); }
+        .tile-2 {
+            background-color: var(--tile-2);
+            color: var(--tile-txt-dark);
+        }
+
+        .tile-4 {
+            background-color: var(--tile-4);
+            color: var(--tile-txt-dark);
+        }
+
+        .tile-8 {
+            background-color: var(--tile-8);
+            color: var(--tile-txt-dark);
+        }
+
+        .tile-16 {
+            background-color: var(--tile-16);
+            color: var(--tile-txt-light);
+        }
+
+        .tile-32 {
+            background-color: var(--tile-32);
+            color: var(--tile-txt-light);
+        }
+
+        .tile-64 {
+            background-color: var(--tile-64);
+            color: var(--tile-txt-light);
+        }
+
+        .tile-128 {
+            background-color: var(--tile-128);
+            color: var(--tile-txt-light);
+            font-size: 28px;
+            box-shadow: 0 0 10px var(--tile-128);
+        }
+
+        .tile-256 {
+            background-color: var(--tile-256);
+            color: var(--tile-txt-light);
+            font-size: 28px;
+            box-shadow: 0 0 15px var(--tile-256);
+        }
+
+        .tile-512 {
+            background-color: var(--tile-512);
+            color: var(--tile-txt-light);
+            font-size: 28px;
+            box-shadow: 0 0 20px var(--tile-512);
+        }
+
+        .tile-1024 {
+            background-color: var(--tile-1024);
+            color: var(--tile-txt-light);
+            font-size: 22px;
+            box-shadow: 0 0 25px var(--tile-1024);
+        }
+
+        .tile-2048 {
+            background-color: var(--tile-2048);
+            color: var(--tile-txt-light);
+            font-size: 22px;
+            box-shadow: 0 0 30px var(--tile-2048);
+        }
 
         .controls {
             width: 100%;
@@ -216,8 +287,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         #game-over h2 {
@@ -232,10 +308,13 @@
                 width: 450px;
                 height: 450px;
             }
-            .grid-cell, .tile {
+
+            .grid-cell,
+            .tile {
                 width: 100px;
                 height: 100px;
             }
+
             .tile-container {
                 width: 430px;
                 height: 430px;
@@ -243,6 +322,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="title-box">
@@ -263,11 +343,23 @@
     <main>
         <div id="game-container">
             <!-- Grid -->
-            <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
-            <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
-            <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
-            <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
-            
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+
             <div id="tile-container" class="tile-container"></div>
 
             <div id="game-over">
@@ -288,7 +380,7 @@
                 this.scoreDisplay = document.getElementById('score');
                 this.bestDisplay = document.getElementById('best-score');
                 this.gameOverDisplay = document.getElementById('game-over');
-                
+
                 this.size = 4;
                 this.grid = [];
                 this.score = 0;
@@ -314,11 +406,11 @@
                 const emptyCells = [];
                 for (let r = 0; r < this.size; r++) {
                     for (let c = 0; c < this.size; c++) {
-                        if (!this.grid[r][c]) emptyCells.push({r, c});
+                        if (!this.grid[r][c]) emptyCells.push({ r, c });
                     }
                 }
                 if (emptyCells.length > 0) {
-                    const {r, c} = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                    const { r, c } = emptyCells[Math.floor(Math.random() * emptyCells.length)];
                     this.grid[r][c] = {
                         value: Math.random() < 0.9 ? 2 : 4,
                         id: Date.now() + Math.random()
@@ -339,7 +431,7 @@
             render() {
                 const cellSize = document.querySelector('.grid-cell').offsetWidth;
                 const gap = 10;
-                
+
                 // Track current tile elements
                 const currentTiles = new Map();
                 document.querySelectorAll('.tile').forEach(el => {
@@ -363,7 +455,7 @@
                                 tileEl.className = `tile tile-${tile.value}`;
                                 tileEl.textContent = tile.value;
                             }
-                            
+
                             if (tile.mergedFrom) {
                                 tileEl.classList.add('merged');
                             }
@@ -412,10 +504,10 @@
                     for (let i = 0; i < row.length - 1; i++) {
                         if (row[i].value === row[i + 1].value) {
                             const newValue = row[i].value * 2;
-                            row[i] = { 
-                                value: newValue, 
-                                id: row[i].id, 
-                                mergedFrom: [row[i].id, row[i+1].id] 
+                            row[i] = {
+                                value: newValue,
+                                id: row[i].id,
+                                mergedFrom: [row[i].id, row[i + 1].id]
                             };
                             this.updateScore(newValue);
                             row.splice(i + 1, 1);
@@ -423,7 +515,7 @@
                         }
                     }
                     while (row.length < this.size) row.push(null);
-                    
+
                     for (let c = 0; c < this.size; c++) {
                         if (tempGrid[r][c] !== row[c]) moved = true;
                         tempGrid[r][c] = row[c];
@@ -463,7 +555,7 @@
 
                 window.addEventListener('touchend', e => {
                     if (!touchStartX || !touchStartY) return;
-                    
+
                     const dx = e.changedTouches[0].clientX - touchStartX;
                     const dy = e.changedTouches[0].clientY - touchStartY;
                     const absDx = Math.abs(dx);
@@ -471,20 +563,22 @@
 
                     if (Math.max(absDx, absDy) > 30) {
                         if (absDx > absDy) {
-                            this.move(dx > 0 ? 1 : 3);
+                            // horizontal
+                            this.move(dx > 0 ? 2 : 0); // RIGHT: 2, LEFT: 0
                         } else {
-                            this.move(dy > 0 ? 2 : 0);
+                            // vertical
+                            this.move(dy > 0 ? 1 : 3); // DOWN: 1, UP: 3
                         }
                     }
                     touchStartX = touchStartY = null;
                 }, { passive: false });
 
                 window.addEventListener('keydown', e => {
-                    switch(e.key) {
-                        case 'ArrowUp': this.move(0); break;
-                        case 'ArrowRight': this.move(1); break;
-                        case 'ArrowDown': this.move(2); break;
-                        case 'ArrowLeft': this.move(3); break;
+                    switch (e.key) {
+                        case 'ArrowUp': this.move(3); break;
+                        case 'ArrowRight': this.move(2); break;
+                        case 'ArrowDown': this.move(1); break;
+                        case 'ArrowLeft': this.move(0); break;
                     }
                 });
             }
@@ -493,4 +587,5 @@
         const game = new Game2048();
     </script>
 </body>
+
 </html>
